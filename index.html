@@ -1,0 +1,183 @@
+<html>
+   <head>
+	  <meta charset="UTF-8">
+      <script>
+	  
+         function validaCampos()
+         {
+            
+			
+			
+			
+         }
+		 
+		 function validacaoDinamicaSenha() {
+			
+			console.log(senhaValida());
+			
+			if (senhaValida()) {
+			
+				alert("Senha correta");
+				
+			}
+		 
+		 }
+		 
+		 function validacaoDinamicaConfirmacaoSenha() {
+		 
+			if (confirmacaoSenhaCorreta()) {
+			
+				alert("Confirmação correta");
+			
+			}
+		 
+		 }
+		 		 
+		 function nomeValido() {
+		 
+			var nomeCliente = document.getElementById('nome').value;
+			
+			if (nomeCliente) {
+				return true;
+			} else {
+				return false;
+			}
+		 
+		 }
+		 
+		 function cpfValido() {
+			
+			var cpfCliente = document.getElementById('cpf').value;
+			
+			if (sintaxeCpfValida(cpfCliente)) {
+			
+				var digitosCpf = cpfCliente.split("");
+								
+				var numeracaoCpf = new Array(8);
+				
+				var posicaoNumeracaoCpf = 0;
+				
+				for (posicaoDigito = 10; posicaoDigito >= 0; posicaoDigito-= 1) {
+																				
+					if (/[0-9]{1}/.test(digitosCpf[posicaoDigito])) {
+						
+						numeracaoCpf[posicaoNumeracaoCpf] = digitosCpf[posicaoDigito];
+						
+						posicaoNumeracaoCpf += 1;
+						
+					}
+				
+				}
+				
+				var verificador1 = digitosCpf[12];
+				var verificador2 = digitosCpf[13];
+				
+				var verificadorCalculado1 = 0;
+				var verificadorCalculado2 = 0;
+				
+				for (posicaoDigito = 0; posicaoDigito < 9; posicaoDigito++) {
+				
+					verificadorCalculado1 += numeracaoCpf[posicaoDigito] * (9 - (posicaoDigito%10))
+					verificadorCalculado2 += numeracaoCpf[posicaoDigito] * (9 - ((posicaoDigito+1)%10))
+										
+				}
+				
+				verificadorCalculado1 = (verificadorCalculado1%11)%10;
+				verificadorCalculado2 += verificadorCalculado1 *9;
+				verificadorCalculado2 = (verificadorCalculado2%11)%10;
+				
+				if (verificador1 == verificadorCalculado1 && verificador2 == verificadorCalculado2) {
+				
+					return true;
+				
+				} else {
+					
+					return false;
+					
+				}
+				
+			}
+					 
+		 }
+		 
+		 function sintaxeCpfValida(cpf) {
+		 
+			if (/[0-9]{3}.{1}[0-9]{3}.{1}[0-9]{3}-{1}[0-9]{2}/.test(cpf)) {
+			
+			return true;
+			
+			} else {
+				
+				return false;
+			
+			}
+			
+		 }
+		 
+		 function emailValido() {
+		 
+			var email = document.getElementById('email').value;
+			
+			return validateEmail(email);
+			
+		 }
+		 
+		 function senhaValida() {
+		 
+			var senha = document.getElementById('senha').value;
+			
+			var testeSenha = /(?=.*[A-Z]{3})(?=.*[0-9]{2})(?=.*[!@#$%&*]{1}).{8,}/
+			
+			return testeSenha.test(senha);
+		 
+		 }
+		 
+		 function confirmacaoSenhaCorreta() {
+		 
+			var senha = document.getElementById('senha').value;
+			var confirmacaoSenha = document.getElementById('senhaConfirmacao').value;
+			
+			if (senha === confirmacaoSenha) {
+			
+				return true;
+				
+			} else {
+			
+				return false;
+			
+			}
+		 
+		 }
+		 
+		/* 
+		 
+		Esta função não foi criada por mim. Crédito para rnevius (http://stackoverflow.com/users/3518452/rnevius)
+			
+		através do post no stackoverflow (http://stackoverflow.com/questions/46155/validate-email-address-in-javascript?page=1&tab=votes#tab-top)
+		 		 		 
+		*/
+		 
+		 function validateEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		}
+		 
+      </script>
+      <title>Cadastro de Cliente</title>
+   </head>
+ <body>
+      <form action="#" method="post" id="formularioCadastro" onsubmit="#">
+         <label for="nome">Nome do Cliente:</label>
+         <input name="nome" id="nome" type="text" ><br />
+         <label for="cpf">CPF:</label>
+         <input name="cpf" id="cpf" type="text"><br />
+         <label for="email">Email:</label>
+         <input name="email" id="email" type="text"><br />
+         <label for="senha">Senha:</label>
+         <input type="password" name="senha" id="senha" onkeyup="validacaoDinamicaSenha()"/><br />
+         <label for="senhaConfirmacao">Confirme a senha:</label>
+         <input type="password" name="senhaConfirmacao" id="senhaConfirmacao" onkeyup="validacaoDinamicaConfirmacaoSenha()" /><br />
+         <input type="submit" value="Cadastrar" />
+      </form>
+   </body>
+</html>
