@@ -6,18 +6,126 @@
          function validaCampos()
          {
             
+			var mensagemErro = "";
 			
+			if (!nomeValido()) {
+				
+				mensagemErro = "É necessário cadastrar um nome."
 			
+			}
+			
+			if (!cpfValido()) {
+			
+				if (mensagemErro == "") {
+				
+					mensagemErro = "É necessário cadastrar um CPF válido."
+				
+				} else {
+				
+					mensagemErro += "\nÉ necessário cadastrar um CPF válido."
+				
+				}
+			
+			}
+			
+			if (!emailValido()) {
+			
+				if (mensagemErro == "") {
+				
+					mensagemErro = "É necessário cadastrar um email válido."
+				
+				} else {
+				
+					mensagemErro += "\nÉ necessário cadastrar um email válido."
+				
+				}
+			
+			}
+			
+			if (!senhaValida()) {
+			
+				if (mensagemErro == "") {
+				
+					mensagemErro = "É necessário cadastrar uma senha válida."
+				
+				} else {
+				
+					mensagemErro += "\nÉ necessário cadastrar uma senha válida."
+				
+				}
+			
+			}
+			
+			if (!confirmacaoSenhaCorreta()) {
+			
+				if (mensagemErro == "") {
+				
+					mensagemErro = "É necessário que a confirmação da senha seja igual à senha."
+				
+				} else {
+				
+					mensagemErro += "\nÉ necessário que a confirmação da senha seja igual à senha."
+				
+				}
+			
+			}
+			
+			if (mensagemErro != "") {
+			
+				alert(mensagemErro);
+				return false;
+			
+			} else {
+			
+				alert("Cadastro efetuado com sucesso.");
+			
+			}			
 			
          }
 		 
+		 function validacaoDinamicaNome() {
+		 
+			if (nomeValido()) {
+			
+				var auxilioUsuarioNome = document.getElementsByClassName("auxilioNome")[0];
+				
+				auxilioUsuarioNome.innerHTML = "Nome inserido";
+			
+			}
+		 
+		 }
+		 
+		 function validacaoDinamicaCpf() {
+		 
+			if (cpfValido()) {
+			
+				var auxilioUsuarioCpf = document.getElementsByClassName("auxilioCpf")[0];
+				
+				auxilioUsuarioCpf.innerHTML = "CPF válido";
+			
+			}
+		 
+		 }
+		 
+		 function validacaoDinamicaEmail() {
+		 
+			if (emailValido()) {
+			
+				var auxilioUsuarioEmail = document.getElementsByClassName("auxilioEmail")[0];
+				
+				auxilioUsuarioEmail.innerHTML = "Email válido";
+			
+			}
+		 
+		 }
+		 
 		 function validacaoDinamicaSenha() {
-			
-			console.log(senhaValida());
-			
+						
 			if (senhaValida()) {
 			
-				alert("Senha correta");
+				var auxilioUsuarioSenha = document.getElementsByClassName("auxilioUsuarioSenha")[0];
+				
+				auxilioUsuarioSenha.innerHTML = "Formato de senha correta";
 				
 			}
 		 
@@ -27,7 +135,9 @@
 		 
 			if (confirmacaoSenhaCorreta()) {
 			
-				alert("Confirmação correta");
+				var auxilioUsuarioConfirmacaoSenha = document.getElementsByClassName("auxilioConfirmacao")[0];
+				
+				auxilioUsuarioConfirmacaoSenha.innerHTML = "Confirmação de senha correta";
 			
 			}
 		 
@@ -99,21 +209,7 @@
 			}
 					 
 		 }
-		 
-		 function sintaxeCpfValida(cpf) {
-		 
-			if (/[0-9]{3}.{1}[0-9]{3}.{1}[0-9]{3}-{1}[0-9]{2}/.test(cpf)) {
-			
-			return true;
-			
-			} else {
-				
-				return false;
-			
-			}
-			
-		 }
-		 
+		 		  
 		 function emailValido() {
 		 
 			var email = document.getElementById('email').value;
@@ -149,6 +245,20 @@
 		 
 		 }
 		 
+		 function sintaxeCpfValida(cpf) {
+		 
+			if (/[0-9]{3}.{1}[0-9]{3}.{1}[0-9]{3}-{1}[0-9]{2}/.test(cpf)) {
+			
+			return true;
+			
+			} else {
+				
+				return false;
+			
+			}
+			
+		 }
+		 
 		/* 
 		 
 		Esta função não foi criada por mim. Crédito para rnevius (http://stackoverflow.com/users/3518452/rnevius)
@@ -166,17 +276,22 @@
       <title>Cadastro de Cliente</title>
    </head>
  <body>
-      <form action="#" method="post" id="formularioCadastro" onsubmit="#">
+      <form action="#" method="post" id="formularioCadastro" onsubmit="return validaCampos()">
          <label for="nome">Nome do Cliente:</label>
-         <input name="nome" id="nome" type="text" ><br />
+         <input name="nome" id="nome" type="text" onkeyup="validacaoDinamicaNome()">
+		 <label for="nomeCadastrado" class="auxilioUsuario auxilioNome">Cadastre seu nome</label><br />
          <label for="cpf">CPF:</label>
-         <input name="cpf" id="cpf" type="text"><br />
+         <input name="cpf" id="cpf" type="text" onkeyup="validacaoDinamicaCpf()">
+		 <label for="cpfCadastrado" class="auxilioUsuario auxilioCpf">Cadastre seu CPF no formato XXX.XXX.XXX-XX.</label><br />
          <label for="email">Email:</label>
-         <input name="email" id="email" type="text"><br />
+         <input name="email" id="email" type="text" onkeyup="validacaoDinamicaEmail()">
+		 <label for="emailCadastrado" class="auxilioUsuario auxilioEmail">Cadastre seu email no formato exemploEmail@domínio.com</label><br />
          <label for="senha">Senha:</label>
-         <input type="password" name="senha" id="senha" onkeyup="validacaoDinamicaSenha()"/><br />
+         <input type="password" name="senha" id="senha" onkeyup="validacaoDinamicaSenha()"/>
+		 <label for="senhaCadastrada" class="auxilioUsuario auxilioSenha"><div class="auxilioUsuarioSenha">Cadastre uma senha com pelo menos 8 caracteres totais.<br />Pelo menos 3 letras maiúsculas.<br />Pelo menos 2 números<br />Pelo menos 1 caracter especial.</div></label><br />
          <label for="senhaConfirmacao">Confirme a senha:</label>
-         <input type="password" name="senhaConfirmacao" id="senhaConfirmacao" onkeyup="validacaoDinamicaConfirmacaoSenha()" /><br />
+         <input type="password" name="senhaConfirmacao" id="senhaConfirmacao" onkeyup="validacaoDinamicaConfirmacaoSenha()" />
+		 <label for="emailCadastrado" class="auxilioUsuario auxilioConfirmacao">Repita sua senha.</label><br />
          <input type="submit" value="Cadastrar" />
       </form>
    </body>
