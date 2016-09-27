@@ -19,8 +19,8 @@ body {
 
 }
 
-input {
-
+#nome, #email, #cpf, #senha, #senhaConfirmacao {
+	
 	border: solid 0.3px gray;
 
 	display: inline-block;
@@ -37,7 +37,8 @@ input {
 
 	font-size: 1em;
 
-	box-shadow: inset 0px 0px 10px black;
+	box-shadow: inset 0px 0px 5px gray;
+
 
 }
 
@@ -75,9 +76,15 @@ input {
 
 	
 	margin: 20px 0px 40px 40px;
+
+	border: solid 1px black;
 	
+	width: 200px;
+
 	height: 35px;
 
 	padding: 0px;
-
+	
+	font-size: 0.7em;
+	
 }
