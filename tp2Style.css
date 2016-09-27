@@ -62,7 +62,7 @@ body {
 
 	display: inline-block;
 
-	margin: 20px 0px 40px 30px;
+	margin: 20px 0px 0px 30px;
 
 	height: 35px;
 
@@ -75,7 +75,7 @@ body {
 .botaoCadastrar {
 
 	
-	margin: 20px 0px 40px 40px;
+	margin: 50px 0px 40px 40px;
 
 	border: solid 1px black;
 	
