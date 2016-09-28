@@ -1,0 +1,90 @@
+html, body, form, label {
+
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	
+}
+
+body {
+
+	line-height: 1;
+
+	margin: 40px 0px 0px 40px;
+
+	font-size: 25px;
+
+}
+
+#nome, #email, #cpf, #senha, #senhaConfirmacao {
+	
+	border: solid 0.3px gray;
+
+	display: inline-block;
+
+	vertical-align: top;
+	
+	margin: 20px 0px 0px 0px;
+	
+	padding: 10px;
+
+	width: 400px;
+
+	height: 35px;
+
+	font-size: 1em;
+
+	box-shadow: inset 0px 0px 5px gray;
+
+
+}
+
+.tituloCampo {
+
+	display: inline-block;
+
+	vertical-align: top;
+
+	margin: 20px 0px 0px 0px;
+
+	width: 8em;
+
+	height: 35px;
+
+	font-size: 1em;
+
+}
+
+.auxilioUsuario {
+
+	display: inline-block;
+
+	margin: 20px 0px 0px 30px;
+
+	height: 35px;
+
+	font-size: 0.75em;
+
+	color: gray;
+	
+}
+
+.botaoCadastrar {
+
+	
+	margin: 50px 0px 40px 40px;
+
+	border: solid 1px black;
+	
+	width: 200px;
+
+	height: 35px;
+
+	padding: 0px;
+	
+	font-size: 0.7em;
+	
+}

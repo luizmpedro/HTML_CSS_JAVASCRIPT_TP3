@@ -1,6 +1,7 @@
 <html>
    <head>
 	  <meta charset="UTF-8">
+	  <link rel="stylesheet" type="text/css" href="tp2Style.css">
       <script>
 	  
          function validaCampos()
@@ -84,60 +85,86 @@
          }
 		 
 		 function validacaoDinamicaNome() {
-		 
-			if (nomeValido()) {
 			
-				var auxilioUsuarioNome = document.getElementsByClassName("auxilioNome")[0];
-				
+			var auxilioUsuarioNome = document.getElementsByClassName("auxilioNome")[0];
+			
+			if (nomeValido()) {
+											
 				auxilioUsuarioNome.innerHTML = "Nome inserido";
+			
+			} else {
+			
+				auxilioUsuarioNome.innerHTML = "Cadastre seu nome";
 			
 			}
 		 
 		 }
 		 
 		 function validacaoDinamicaCpf() {
-		 
-			if (cpfValido()) {
 			
-				var auxilioUsuarioCpf = document.getElementsByClassName("auxilioCpf")[0];
-				
+			var auxilioUsuarioCpf = document.getElementsByClassName("auxilioCpf")[0];
+			
+			if (cpfValido()) {
+											
 				auxilioUsuarioCpf.innerHTML = "CPF válido";
+			
+			} else {
+			
+				auxilioUsuarioCpf.innerHTML = "Formato XXX.XXX.XXX-XX";
 			
 			}
 		 
 		 }
 		 
 		 function validacaoDinamicaEmail() {
-		 
-			if (emailValido()) {
 			
-				var auxilioUsuarioEmail = document.getElementsByClassName("auxilioEmail")[0];
-				
+			var auxilioUsuarioEmail = document.getElementsByClassName("auxilioEmail")[0];
+			
+			if (emailValido()) {
+							
 				auxilioUsuarioEmail.innerHTML = "Email válido";
+			
+			} else {
+			
+				auxilioUsuarioEmail.innerHTML = "Email inválido.";
+				
+				return false;
 			
 			}
 		 
 		 }
 		 
 		 function validacaoDinamicaSenha() {
-						
-			if (senhaValida()) {
 			
-				var auxilioUsuarioSenha = document.getElementsByClassName("auxilioUsuarioSenha")[0];
-				
+			var auxilioUsuarioSenha = document.getElementsByClassName("auxilioUsuarioSenha")[0];
+			
+			if (senhaValida()) {
+											
 				auxilioUsuarioSenha.innerHTML = "Formato de senha correta";
 				
+				return false;
+				
+			} else {
+				
+				var textoPadrao = "Pelo menos 8 caracteres.<br >Pelo menos 3 letras maiúsculas.<br >Pelo menos 2 números<br >Pelo menos 1 caracter especial."
+				
+				auxilioUsuarioSenha.innerHTML = textoPadrao;
+			
 			}
 		 
 		 }
 		 
 		 function validacaoDinamicaConfirmacaoSenha() {
-		 
-			if (confirmacaoSenhaCorreta()) {
 			
-				var auxilioUsuarioConfirmacaoSenha = document.getElementsByClassName("auxilioConfirmacao")[0];
-				
+			var auxilioUsuarioConfirmacaoSenha = document.getElementsByClassName("auxilioConfirmacao")[0];
+			
+			if (confirmacaoSenhaCorreta()) {
+											
 				auxilioUsuarioConfirmacaoSenha.innerHTML = "Confirmação de senha correta";
+			
+			} else {
+			
+				auxilioUsuarioConfirmacaoSenha.innerHTML = "Repita sua senha.";
 			
 			}
 		 
@@ -277,22 +304,22 @@
    </head>
  <body>
       <form action="#" method="post" id="formularioCadastro" onsubmit="return validaCampos()">
-         <label for="nome">Nome do Cliente:</label>
+         <label for="nome" class="tituloCampo">Nome do Cliente:</label>
          <input name="nome" id="nome" type="text" onkeyup="validacaoDinamicaNome()">
 		 <label for="nomeCadastrado" class="auxilioUsuario auxilioNome">Cadastre seu nome</label><br />
-         <label for="cpf">CPF:</label>
+         <label for="cpf" class="tituloCampo">CPF:</label>
          <input name="cpf" id="cpf" type="text" onkeyup="validacaoDinamicaCpf()">
-		 <label for="cpfCadastrado" class="auxilioUsuario auxilioCpf">Cadastre seu CPF no formato XXX.XXX.XXX-XX.</label><br />
-         <label for="email">Email:</label>
+		 <label for="cpfCadastrado" class="auxilioUsuario auxilioCpf">Formato XXX.XXX.XXX-XX.</label><br />
+         <label for="email" class="tituloCampo">Email:</label>
          <input name="email" id="email" type="text" onkeyup="validacaoDinamicaEmail()">
-		 <label for="emailCadastrado" class="auxilioUsuario auxilioEmail">Cadastre seu email no formato exemploEmail@domínio.com</label><br />
-         <label for="senha">Senha:</label>
+		 <label for="emailCadastrado" class="auxilioUsuario auxilioEmail">Email inválido</label><br />
+         <label for="senha" class="tituloCampo">Senha:</label>
          <input type="password" name="senha" id="senha" onkeyup="validacaoDinamicaSenha()"/>
-		 <label for="senhaCadastrada" class="auxilioUsuario auxilioSenha"><div class="auxilioUsuarioSenha">Cadastre uma senha com pelo menos 8 caracteres totais.<br />Pelo menos 3 letras maiúsculas.<br />Pelo menos 2 números<br />Pelo menos 1 caracter especial.</div></label><br />
-         <label for="senhaConfirmacao">Confirme a senha:</label>
+		 <label for="senhaCadastrada" class="auxilioUsuario auxilioSenha"><div class="auxilioUsuarioSenha">Pelo menos 8 caracteres.<br />Pelo menos 3 letras maiúsculas.<br />Pelo menos 2 números<br />Pelo menos 1 caracter especial.</div></label><br />
+         <label for="senhaConfirmacao" class="tituloCampo">Confirme a senha:</label>
          <input type="password" name="senhaConfirmacao" id="senhaConfirmacao" onkeyup="validacaoDinamicaConfirmacaoSenha()" />
 		 <label for="emailCadastrado" class="auxilioUsuario auxilioConfirmacao">Repita sua senha.</label><br />
-         <input type="submit" value="Cadastrar" />
+         <input type="submit" value="Cadastrar" class="botaoCadastrar" />
       </form>
    </body>
 </html>
