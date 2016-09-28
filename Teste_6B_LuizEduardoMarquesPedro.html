@@ -344,11 +344,66 @@
 		 
 			var senha = document.getElementById('senha').value;
 			
-			var testeSenha = /(?=.*[A-Z]{3})(?=.*[0-9]{2})(?=.*[!@#$%&*]{1}).{8,}/
+			if (numeroCaracteresMaiusculos(senha) >= 3 && numeroCaracteresEspeciais(senha) >0 && numeroDigitos(senha) > 1 && senha.legth > 7) {
+				
+				return true;
+				
+			} else {
 			
-			return testeSenha.test(senha);
+				return false;
+			}
+			
 		 
 		 }
+		 
+		 function numeroCaracteresMaiusculos(textoAvaliado) {
+			
+			var numeroParcial = 0;
+			var caracter = "";
+			var caracterMaiusculo = "";
+			
+			for (posicaoTexto = 0; posicaoTexto < textoAvaliado.length; posicaoTexto++) {
+				
+				caracter = textoAvaliado.charAt(posicaoTexto);
+				caracterMaiusculo = caracter.toUpperCase();
+				
+				if (caracter == caracterMaiusculo) {
+				
+					numeroParcial+= 1;
+				
+				}
+			
+			}
+			
+			return numeroParcial;
+		
+		}
+		
+		function numeroDigitos(textoAvaliado) {
+			
+			var numeroParcial = 0;
+			var caracter = "";
+			
+			for (posicaoTexto = 0; posicaoTexto < textoAvaliado.length; posicaoTexto++) {
+			
+				caracter = textoAvaliado.charAt(posicaoTexto);
+				
+				if (!isNaN(textoAvaliado.charAt(posicaoTexto))) {				
+					numeroParcial+= 1;				
+				}				
+			}
+					
+			return numeroParcial;
+		}
+		 
+		function numeroCaracteresEspeciais(textoAvaliado) {
+		 
+			var testeCaracterEspecial = /(?=.*[!@#$%&*]){1}/;
+			
+			return testeCaracterEspecial.test(textoAvaliado);
+		 
+		}
+			
 		 
 		 function confirmacaoSenhaCorreta() {
 		 
