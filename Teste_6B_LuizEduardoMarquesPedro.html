@@ -1,268 +1,173 @@
 <html>
    <head>
-	  <meta charset="UTF-8">
-  
-	  <style>
-		
+	  <meta charset="UTF-8">  
+	  <style>		
 		html, body, form, label {
-
 			margin: 0;
 			padding: 0;
 			border: 0;
 			font-size: 100%;
 			font: inherit;
-			vertical-align: baseline;
-			
+			vertical-align: baseline;			
 		}
 
 		body {
-
 			line-height: 1;
-
 			margin: 40px 0px 0px 40px;
-
 			font-size: 25px;
-
 		}
 
-		#nome, #email, #cpf, #senha, #senhaConfirmacao {
-			
+		#nome, #email, #cpf, #senha, #senhaConfirmacao {			
 			border: solid 0.3px gray;
-
 			display: inline-block;
-
-			vertical-align: top;
-			
-			margin: 20px 0px 0px 0px;
-			
+			vertical-align: top;			
+			margin: 20px 0px 0px 0px;			
 			padding: 10px;
-
 			width: 400px;
-
 			height: 35px;
-
 			font-size: 1em;
-
 			box-shadow: inset 0px 0px 5px gray;
-
-
 		}
 
 		.tituloCampo {
-
 			display: inline-block;
-
 			vertical-align: top;
-
 			margin: 20px 0px 0px 0px;
-
 			width: 8em;
-
 			height: 35px;
-
-			font-size: 1em;
-
+			font-size: 1em;			
 		}
 
 		.auxilioUsuario {
-
 			display: inline-block;
-
 			margin: 20px 0px 0px 30px;
-
 			height: 35px;
-
 			font-size: 0.75em;
-
-			color: gray;
-			
+			color: gray;			
 		}
 
-		.botaoCadastrar {
-
-			
+		.botaoCadastrar {			
 			margin: 50px 0px 40px 40px;
-
-			border: solid 1px black;
-			
+			border: solid 1px black;			
 			width: 200px;
-
 			height: 35px;
-
-			padding: 0px;
-			
-			font-size: 0.7em;
-			
-		}		
-	  
+			padding: 0px;			
+			font-size: 0.7em;			
+		}	  
 	  </style>
 	  
-      <script>
-	  
-         function validaCampos()
-         {
+      <script>	  
+         function validaCampos() {
             
 			var mensagemErro = "";
 			
-			if (!nomeValido()) {
-				
-				mensagemErro = "É necessário cadastrar um nome."
-			
+			if (!nomeValido()) {				
+				mensagemErro = "É necessário cadastrar um nome."			
 			}
 			
 			if (!cpfValido()) {
 			
-				if (mensagemErro == "") {
-				
-					mensagemErro = "É necessário cadastrar um CPF válido."
-				
-				} else {
-				
-					mensagemErro += "\nÉ necessário cadastrar um CPF válido."
-				
-				}
-			
+				if (mensagemErro == "") {				
+					mensagemErro = "É necessário cadastrar um CPF válido."				
+				} else {				
+					mensagemErro += "\nÉ necessário cadastrar um CPF válido."				
+				}			
 			}
 			
 			if (!emailValido()) {
 			
-				if (mensagemErro == "") {
-				
-					mensagemErro = "É necessário cadastrar um email válido."
-				
-				} else {
-				
-					mensagemErro += "\nÉ necessário cadastrar um email válido."
-				
-				}
-			
+				if (mensagemErro == "") {				
+					mensagemErro = "É necessário cadastrar um email válido."				
+				} else {				
+					mensagemErro += "\nÉ necessário cadastrar um email válido."				
+				}			
 			}
 			
 			if (!senhaValida()) {
 			
-				if (mensagemErro == "") {
-				
-					mensagemErro = "É necessário cadastrar uma senha válida."
-				
-				} else {
-				
-					mensagemErro += "\nÉ necessário cadastrar uma senha válida."
-				
+				if (mensagemErro == "") {				
+					mensagemErro = "É necessário cadastrar uma senha válida."				
+				} else {				
+					mensagemErro += "\nÉ necessário cadastrar uma senha válida."				
 				}
 			
 			}
 			
 			if (!confirmacaoSenhaCorreta()) {
 			
-				if (mensagemErro == "") {
-				
-					mensagemErro = "É necessário que a confirmação da senha seja igual à senha."
-				
-				} else {
-				
-					mensagemErro += "\nÉ necessário que a confirmação da senha seja igual à senha."
-				
-				}
-			
+				if (mensagemErro == "") {				
+					mensagemErro = "É necessário que a confirmação da senha seja igual à senha."				
+				} else {				
+					mensagemErro += "\nÉ necessário que a confirmação da senha seja igual à senha."				
+				}			
 			}
 			
-			if (mensagemErro != "") {
-			
+			if (mensagemErro != "") {			
 				alert(mensagemErro);
-				return false;
-			
-			} else {
-			
-				alert("Cadastro efetuado com sucesso.");
-			
+				return false;			
+			} else {			
+				alert("Cadastro efetuado com sucesso.");			
 			}			
-			
          }
 		 
 		 function validacaoDinamicaNome() {
 			
 			var auxilioUsuarioNome = document.getElementsByClassName("auxilioNome")[0];
 			
-			if (nomeValido()) {
-											
-				auxilioUsuarioNome.innerHTML = "Nome inserido";
-			
-			} else {
-			
-				auxilioUsuarioNome.innerHTML = "Cadastre seu nome";
-			
-			}
-		 
+			if (nomeValido()) {											
+				auxilioUsuarioNome.innerHTML = "Nome inserido";			
+			} else {			
+				auxilioUsuarioNome.innerHTML = "Cadastre seu nome";			
+			}		 
 		 }
 		 
 		 function validacaoDinamicaCpf() {
 			
 			var auxilioUsuarioCpf = document.getElementsByClassName("auxilioCpf")[0];
 			
-			if (cpfValido()) {
-											
-				auxilioUsuarioCpf.innerHTML = "CPF válido";
-			
-			} else {
-			
-				auxilioUsuarioCpf.innerHTML = "Formato XXX.XXX.XXX-XX";
-			
-			}
-		 
+			if (cpfValido()) {											
+				auxilioUsuarioCpf.innerHTML = "CPF válido";			
+			} else {			
+				auxilioUsuarioCpf.innerHTML = "Formato XXX.XXX.XXX-XX";			
+			}		 
 		 }
 		 
 		 function validacaoDinamicaEmail() {
 			
 			var auxilioUsuarioEmail = document.getElementsByClassName("auxilioEmail")[0];
 			
-			if (emailValido()) {
-							
-				auxilioUsuarioEmail.innerHTML = "Email válido";
-			
-			} else {
-			
-				auxilioUsuarioEmail.innerHTML = "Email inválido.";
-				
-				return false;
-			
-			}
-		 
+			if (emailValido()) {							
+				auxilioUsuarioEmail.innerHTML = "Email válido";			
+			} else {			
+				auxilioUsuarioEmail.innerHTML = "Email inválido.";				
+				return false;			
+			}		 
 		 }
 		 
 		 function validacaoDinamicaSenha() {
 			
 			var auxilioUsuarioSenha = document.getElementsByClassName("auxilioUsuarioSenha")[0];
 			
-			if (senhaValida()) {
-											
-				auxilioUsuarioSenha.innerHTML = "Formato de senha correta";
-				
-				return false;
-				
+			if (senhaValida()) {											
+				auxilioUsuarioSenha.innerHTML = "Formato de senha correta";				
+				return false;				
 			} else {
-				
+			
 				var textoPadrao = "Pelo menos 8 caracteres.<br >Pelo menos 3 letras maiúsculas.<br >Pelo menos 2 números<br >Pelo menos 1 caracter especial."
 				
-				auxilioUsuarioSenha.innerHTML = textoPadrao;
-			
-			}
-		 
+				auxilioUsuarioSenha.innerHTML = textoPadrao;			
+			}		 
 		 }
 		 
 		 function validacaoDinamicaConfirmacaoSenha() {
 			
 			var auxilioUsuarioConfirmacaoSenha = document.getElementsByClassName("auxilioConfirmacao")[0];
 			
-			if (confirmacaoSenhaCorreta()) {
-											
-				auxilioUsuarioConfirmacaoSenha.innerHTML = "Confirmação de senha correta";
-			
-			} else {
-			
-				auxilioUsuarioConfirmacaoSenha.innerHTML = "Repita sua senha.";
-			
-			}
-		 
+			if (confirmacaoSenhaCorreta()) {											
+				auxilioUsuarioConfirmacaoSenha.innerHTML = "Confirmação de senha correta";			
+			} else {			
+				auxilioUsuarioConfirmacaoSenha.innerHTML = "Repita sua senha.";			
+			}		 
 		 }
 		 		 
 		 function nomeValido() {
@@ -283,22 +188,16 @@
 			
 			if (sintaxeCpfValida(cpfCliente)) {
 			
-				var digitosCpf = cpfCliente.split("");
-								
-				var numeracaoCpf = new Array(8);
-				
+				var digitosCpf = cpfCliente.split("");								
+				var numeracaoCpf = new Array(8);				
 				var posicaoNumeracaoCpf = 0;
 				
 				for (posicaoDigito = 10; posicaoDigito >= 0; posicaoDigito-= 1) {
 																				
-					if (/[0-9]{1}/.test(digitosCpf[posicaoDigito])) {
-						
-						numeracaoCpf[posicaoNumeracaoCpf] = digitosCpf[posicaoDigito];
-						
-						posicaoNumeracaoCpf += 1;
-						
-					}
-				
+					if (/[0-9]{1}/.test(digitosCpf[posicaoDigito])) {						
+						numeracaoCpf[posicaoNumeracaoCpf] = digitosCpf[posicaoDigito];						
+						posicaoNumeracaoCpf += 1;						
+					}				
 				}
 				
 				var verificador1 = digitosCpf[12];
@@ -318,16 +217,11 @@
 				verificadorCalculado2 += verificadorCalculado1 *9;
 				verificadorCalculado2 = (verificadorCalculado2%11)%10;
 				
-				if (verificador1 == verificadorCalculado1 && verificador2 == verificadorCalculado2) {
-				
-					return true;
-				
-				} else {
-					
-					return false;
-					
-				}
-				
+				if (verificador1 == verificadorCalculado1 && verificador2 == verificadorCalculado2) {				
+					return true;				
+				} else {					
+					return false;					
+				}				
 			}
 					 
 		 }
@@ -343,17 +237,12 @@
 		 function senhaValida() {
 		 
 			var senha = document.getElementById('senha').value;
-			
-			if (numeroCaracteresMaiusculos(senha) >= 3 && numeroCaracteresEspeciais(senha) >0 && numeroDigitos(senha) > 1 && senha.legth > 7) {
-				
-				return true;
-				
-			} else {
-			
+						
+			if ((numeroCaracteresMaiusculos(senha) >= 3) && (numeroCaracteresEspeciais(senha) > 0) && (numeroDigitos(senha) > 1) && (senha.length > 7)) {				
+				return true;				
+			} else {			
 				return false;
-			}
-			
-		 
+			}	 
 		 }
 		 
 		 function numeroCaracteresMaiusculos(textoAvaliado) {
@@ -361,22 +250,19 @@
 			var numeroParcial = 0;
 			var caracter = "";
 			var caracterMaiusculo = "";
+			var testeMaiusculo = /([A-Z])/;
 			
 			for (posicaoTexto = 0; posicaoTexto < textoAvaliado.length; posicaoTexto++) {
 				
 				caracter = textoAvaliado.charAt(posicaoTexto);
 				caracterMaiusculo = caracter.toUpperCase();
 				
-				if (caracter == caracterMaiusculo) {
-				
-					numeroParcial+= 1;
-				
-				}
-			
+				if (testeMaiusculo.test(caracter)) {				
+					numeroParcial+= 1;				
+				}			
 			}
 			
-			return numeroParcial;
-		
+			return numeroParcial;		
 		}
 		
 		function numeroDigitos(textoAvaliado) {
@@ -410,30 +296,20 @@
 			var senha = document.getElementById('senha').value;
 			var confirmacaoSenha = document.getElementById('senhaConfirmacao').value;
 			
-			if (senha === confirmacaoSenha && confirmacaoSenha != "" && senhaValida()) {
-			
-				return true;
-				
-			} else {
-			
-				return false;
-			
-			}
-		 
+			if (senha === confirmacaoSenha && confirmacaoSenha != "" && senhaValida()) {			
+				return true;				
+			} else {			
+				return false;			
+			}		 
 		 }
 		 
 		 function sintaxeCpfValida(cpf) {
 		 
-			if (/[0-9]{3}.{1}[0-9]{3}.{1}[0-9]{3}-{1}[0-9]{2}/.test(cpf)) {
-			
-			return true;
-			
-			} else {
-				
-				return false;
-			
-			}
-			
+			if (/[0-9]{3}.{1}[0-9]{3}.{1}[0-9]{3}-{1}[0-9]{2}/.test(cpf)) {			
+				return true;			
+			} else {				
+				return false;			
+			}			
 		 }
 		 
 		/* 
@@ -447,8 +323,7 @@
 		 function validateEmail(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
-		}
-		 
+		}		 
       </script>
       <title>Cadastro de Cliente</title>
    </head>
@@ -473,3 +348,4 @@
       </form>
    </body>
 </html>
+
